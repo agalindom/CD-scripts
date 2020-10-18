@@ -6,6 +6,7 @@ version: 2.1
 
 # Create job
 jobs:
+  # Job for infrastructure creation
   create_infrastructure:
     docker:
       - image: amazon/aws-cli
@@ -17,13 +18,29 @@ jobs:
             aws cloudformation deploy \
               --template-file Infrastructure_creation/template.yml \
               --stack-name my-udacity-stack
+  # Job for ansible and server creation
+  configure_infrastructure:
+    docker:
+      - image: python:3.7-alpine3.11
+    steps:
+      - checkout
+      - add_ssh_keys: 
+          fingerprints: [92:a2:e4:63:95:41:c0:86:a6:77:11:23:96:0a:3e:f0]
+      - run:
+          name: Install dependencies
+          command: |
+            apk add --update ansible
+      - run:
+          name: Configure server
+          command: |
+            ansible-playbook -i ansible-inventory/inventory ansible-inventory/main-remote.yml
 
             
 # Orchestrate or schedule a set of jobs
 workflows:
   # Name the workflow "welcome"
-  infra_creation:
+  my-workflow:
     # Run the welcome/run job in its own container
     jobs:
-      - create_infrastructure
+      - configure_infrastructure
 
