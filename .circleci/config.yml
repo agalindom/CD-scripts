@@ -1,0 +1,29 @@
+# Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
+version: 2.1
+# Command section (skipped)
+
+# Use a package of configuration called an orb. (skipped)
+
+# Create job
+jobs:
+  create_infrastructure:
+    docker:
+      - image: amazon/aws-cli
+    steps:
+      - checkout
+      - run: 
+          name: Create backend infrastructure
+          command: |
+            aws cloudformation deploy \
+            -- template-file Infrastructure_creation/template.yml \
+            -- stack-name infra-CD
+
+            
+# Orchestrate or schedule a set of jobs
+workflows:
+  # Name the workflow "welcome"
+  infra_creation:
+    # Run the welcome/run job in its own container
+    jobs:
+      - create_infraestructure
+
