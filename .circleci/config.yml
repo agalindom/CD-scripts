@@ -17,6 +17,7 @@ jobs:
             aws cloudformation deploy \
             --template-file Infrastructure_creation/template.yml \
             --stack-name infra-CD
+            --region=us-east-2
 
             
 # Orchestrate or schedule a set of jobs
