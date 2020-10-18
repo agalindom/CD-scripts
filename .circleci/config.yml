@@ -16,7 +16,7 @@ jobs:
           command: |
             aws cloudformation deploy \
               --template-file Infrastructure_creation/template.yml \
-              --stack-name stack-uda
+              --stack-name stack-udacity
 
             
 # Orchestrate or schedule a set of jobs
