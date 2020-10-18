@@ -15,7 +15,7 @@ jobs:
           name: Create backend infrastructure
           command: |
             aws cloudformation deploy \
-            --template-file Infrastructure_creation/template.yml \
+            --template-file /Infrastructure_creation/template.yml \
             --stack-name infra-CD \
             --region=us-east-2
 
