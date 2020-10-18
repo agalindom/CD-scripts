@@ -25,5 +25,5 @@ workflows:
   infra_creation:
     # Run the welcome/run job in its own container
     jobs:
-      - create_infraestructure
+      - create_infrastructure
 
