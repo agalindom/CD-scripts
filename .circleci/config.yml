@@ -16,7 +16,7 @@ jobs:
           command: |
             aws cloudformation deploy \
             --template-file Infrastructure_creation/template.yml \
-            --stack-name infra-CD
+            --stack-name infra-CD \
             --region=us-east-2
 
             
