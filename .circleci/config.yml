@@ -37,12 +37,12 @@ jobs:
             cd .circleci/ansible 
             ansible-playbook main-remote.yml -i inventory
     
-    smoke-test:
-      docker:
-        - image: python:3.7-alpine3.11
-      steps:
-        - checkout
-        - run:
+  smoke-test:
+    docker:
+      - image: python:3.7-alpine3.11
+    steps:
+      - checkout
+      - run:
           name: Test if website is up
           command: |
             if curl -s --head "https://google.com"
