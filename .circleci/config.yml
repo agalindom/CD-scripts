@@ -11,6 +11,7 @@ commands:
             aws cloudformation delete-stack \
             --stack-name prod-${CIRCLE_WORKFLOW_ID} \
             --region=us-west-2
+          when: on_fail
 
 # Use a package of configuration called an orb. (skipped)
 
@@ -72,13 +73,8 @@ jobs:
       - image: python:3.7-alpine3.11
     steps:
       - checkout
-      - run: 
-          command: |
-            echo checking for errors
       - run: return 1
-      - destroy_environment when: on_fail
-
-
+      - destroy_environment 
 
             
 # Orchestrate or schedule a set of jobs
