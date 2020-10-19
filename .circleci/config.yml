@@ -33,7 +33,7 @@ jobs:
       - run:
           name: Configure server
           command: |
-            ansible-playbook -i ansible-inventory/inventory ansible-inventory/main-remote.yml
+            ansible-playbook -y -i ansible-inventory/inventory ansible-inventory/main-remote.yml
 
             
 # Orchestrate or schedule a set of jobs
