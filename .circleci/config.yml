@@ -40,12 +40,15 @@ jobs:
   smoke-test:
     docker:
       - image: python:3.7-alpine3.11
+    environment: 
+      URL: "http://ec2-18-236-123-170.us-west-2.compute.amazonaws.com:3000/"
     steps:
       - checkout
+      - run: apk add --update curl
       - run:
           name: Test if website is up
           command: |
-            if curl -s --head "https://google.com"
+            if curl -s --head $URL
             then
               echo Website is up!
             else
