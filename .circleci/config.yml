@@ -54,7 +54,7 @@ jobs:
     docker:
       - image: python:3.7-alpine3.11
     environment: 
-      URL: "http://ec2-18-236-123-170.us-west-2.compute.amazonaws.com:3000/"
+      URL: "DNS-server:3000/"
     steps:
       - checkout
       - run: apk add --update curl
@@ -83,7 +83,9 @@ workflows:
   my-workflow:
     # Run the welcome/run job in its own container
     jobs:
-      - configure_infrastructure
+      - create_infrastructure
+      - configure_infrastructure:
+          requires: [create_infrastructure]
       - smoke-test:
           requires: [configure_infrastructure]
       - rollback:
