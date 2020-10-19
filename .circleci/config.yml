@@ -36,6 +36,22 @@ jobs:
           command: |
             cd .circleci/ansible 
             ansible-playbook main-remote.yml -i inventory
+    
+    smoke-test:
+      docker:
+        - image: python:3.7-alpine3.11
+      steps:
+        - checkout
+        - run:
+          name: Test if website is up
+          command: |
+            if curl -s --head "https://google.com"
+            then
+              echo Website is up!
+            else
+              echo Website not found!
+            fi
+
 
             
 # Orchestrate or schedule a set of jobs
@@ -45,4 +61,6 @@ workflows:
     # Run the welcome/run job in its own container
     jobs:
       - configure_infrastructure
+      - smoke-test:
+          requires: [configure_infrastructure]
 
