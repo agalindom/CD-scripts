@@ -40,7 +40,7 @@ jobs:
             
 # Orchestrate or schedule a set of jobs
 workflows:
-  # Name the workflow "welcome"
+  #  Name the workflow "welcome"
   my-workflow:
     # Run the welcome/run job in its own container
     jobs:
