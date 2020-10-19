@@ -27,7 +27,6 @@ jobs:
       - add_ssh_keys: 
           fingerprints: 
             - 1d:99:a8:fe:f8:c2:95:d9:94:88:b9:60:bb:73:e3:70
-            - 50:4b:57:a0:e4:e5:f1:24:02:d0:af:aa:6e:a7:1b:55
       - run:
           name: Install dependencies
           command: |
@@ -36,7 +35,7 @@ jobs:
           name: Configure server
           command: |
             cd .circleci/ansible 
-            yes | ansible-playbook main-remote.yml -i inventory
+            ansible-playbook main-remote.yml -i inventory
 
             
 # Orchestrate or schedule a set of jobs
