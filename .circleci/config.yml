@@ -35,7 +35,7 @@ jobs:
       - run:
           name: Configure server
           command: |
-            yes | ansible-playbook -b ansible-inventory/main-remote.yml -i ansible-inventory/inventory --private-key udacity.pem
+            ansible-playbook main-remote.yml -i inventory
 
             
 # Orchestrate or schedule a set of jobs
